@@ -38,9 +38,9 @@ export const deletePost = (req, res) => {
   });
 };
 export const updatePost = (req, res) => {
-  Post.findByIdAndUpdate(req.params.id, { title: req.body.title, tags: req.body.tags, content: req.body.content, cover_url: req.body.cover_url })
+  Post.findByIdAndUpdate(req.params.id, { $set: req.body })
   .then((result) => {
-    res.json(result);
+    res.json({ message: 'Post updated!' });
   })
   .catch((error) => {
     res.status(500).json({ error });
