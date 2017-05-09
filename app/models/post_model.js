@@ -6,6 +6,7 @@ const PostSchema = new Schema({
   tags: String,
   content: String,
   cover_url: String,
+  created_at: { type: Date, required: true, default: Date.now },
 }, {
   toJSON: {
     virtuals: true,
