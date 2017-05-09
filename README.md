@@ -1,9 +1,8 @@
-# starter express app template
+# What I did
+I got my app to connect to the database.
 
-* node with babel
-* expressjs
-* airbnb eslint rules
+# What worked
+Doing SA7 first made doing this lab much easier.
 
-Procfile set up to run on [heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app)
-
-
+# Extra credit
+I ordered my posts by most recent posts first. If you click on the post, the individual post view will give you a timestamp of when that post was created.
