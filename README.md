@@ -5,4 +5,4 @@ I got my app to connect to the database.
 Doing SA7 first made doing this lab much easier.
 
 # Extra credit
-I ordered my posts by most recent posts first. If you click on the post, the individual post view will give you a timestamp of when that post was created.
+I ordered my posts by most recent posts first. In addition, I added a timestamp to both my posts view and my individual post view. This was done by using the mongoose created_at method.
