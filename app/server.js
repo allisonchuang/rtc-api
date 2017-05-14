@@ -31,6 +31,8 @@ app.use('/', apiRouter);
 app.use('/api', apiRouter);
 app.use('/posts', apiRouter);
 app.use('/posts/:id', apiRouter);
+app.use('/signin', apiRouter);
+app.use('/signup', apiRouter);
 
 // START THE SERVER
 // =============================================================================

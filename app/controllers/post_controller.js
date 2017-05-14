@@ -1,7 +1,8 @@
 import Post from '../models/post_model';
+// import User from '../models/user_model';
 
 export const createPost = (req, res) => {
-  const post = new Post({ title: req.body.title, tags: req.body.tags, content: req.body.content, cover_url: req.body.cover_url });
+  const post = new Post({ title: req.body.title, author: req.user._id, tags: req.body.tags, content: req.body.content, cover_url: req.body.cover_url });
   post.save()
   .then((result) => {
     res.json({ message: 'Post created!' });
