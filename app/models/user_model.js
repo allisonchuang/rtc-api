@@ -18,8 +18,6 @@ UserSchema.pre('save', function beforeUserSave(next) {
 
   if (!user.isModified('password')) return next();
 
-  // const salt = bcrypt.genSaltSync(10);
-  // const hash = bcrypt.hashSync('B4c0//', salt);
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(user.password, salt, (err, hash) => {
       user.password = hash;

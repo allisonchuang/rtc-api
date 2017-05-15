@@ -39,8 +39,8 @@ export const signup = (req, res, next) => {
   const username = req.body.username;
   const profile = req.body.profile;
 
-  if (!email || !password) {
-    return res.status(422).send('You must provide email and password');
+  if (!email || !password || !username || !profile) {
+    return res.status(422).send('You must provide all fields');
   }
 
   User.findOne({ email })
