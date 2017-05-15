@@ -1,8 +1,7 @@
 # What I did
-I got my app to connect to the database.
-
+In addition to the authentication required for this assignment, the user model also handles a username and profile picture url.
 # What worked
-Doing SA7 first made doing this lab much easier.
+It was easy to create the user model and user controller by modeling off of the post model and post controller.
 
 # Extra credit
-I ordered my posts by most recent posts first. In addition, I added a timestamp to both my posts view and my individual post view. This was done by using the mongoose created_at method.
+My user model handles a username and profile picture url and is supported by the rest of the backend. This information is taken during the signup process.
