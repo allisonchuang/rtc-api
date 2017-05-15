@@ -11,22 +11,33 @@ function tokenForUser(user) {
 }
 
 export const signin = (req, res, next) => {
+  if (!req.body.email || !req.body.password) {
+    return res.status(422).send('You must provide email and password');
+  }
+
   User.findOne({ email: req.body.email })
   .then((user) => {
-    user.comparePassword(req.body.password, (error, isMatch) => {
-      if (error) res.status(422).send('error');
-      else if (isMatch) res.send({ token: tokenForUser(req.user) });
-      else res.status(422).send('Your password is incorrect');
-    });
+    if (user === null) {
+      res.status(422).send('The email address you entered does not exist');
+    } else {
+      user.comparePassword(req.body.password, (error, isMatch) => {
+        if (error) res.status(500).json({ error });
+        else if (isMatch) res.send({ token: tokenForUser(req.user) });
+        else res.status(422).send('Your password is incorrect');
+      });
+    }
   })
   .catch((error) => {
-    res.status(422).send('Your email address is incorrect');
+    res.status(500).json({ error });
   });
+  return null;
 };
 
 export const signup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const username = req.body.username;
+  const profile = req.body.profile;
 
   if (!email || !password) {
     return res.status(422).send('You must provide email and password');
@@ -35,9 +46,9 @@ export const signup = (req, res, next) => {
   User.findOne({ email })
   .then((result) => {
     if (result !== null) {
-      return res.status(422).send('The email address you inputted already exists');
+      return res.status(422).send('The email address you entered already exists');
     } else {
-      const user = new User({ email, password });
+      const user = new User({ email, password, username, profile });
       user.save()
       .then((saved) => {
         res.send({ token: tokenForUser(saved) });

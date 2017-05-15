@@ -13,20 +13,18 @@ export const createPost = (req, res) => {
 };
 export const getPosts = (req, res) => {
   Post.find({}).sort('-created_at')
-  .then((result) => {
-    res.json(result);
-  })
-  .catch((error) => {
-    res.status(500).json({ error });
+  .populate('author')
+  .exec((err, posts) => {
+    if (err) res.status(500).json({ err });
+    res.json(posts);
   });
 };
 export const getPost = (req, res) => {
   Post.findById(req.params.id)
-  .then((result) => {
-    res.json(result);
-  })
-  .catch((error) => {
-    res.status(500).json({ error });
+  .populate('author')
+  .exec((err, post) => {
+    if (err) res.status(500).json({ err });
+    res.json(post);
   });
 };
 export const deletePost = (req, res) => {
