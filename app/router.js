@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import * as Posts from './controllers/post_controller';
 import * as UserController from './controllers/user_controller';
+import * as Applicants from './controllers/applicant_controller';
 import { requireAuth, requireSignin } from './services/passport';
 
 const router = Router();
@@ -18,6 +19,10 @@ router.route('/posts/:id')
   .put(requireAuth, Posts.updatePost)
   .get(Posts.getPost)
   .delete(requireAuth, Posts.deletePost);
+
+router.route('/applicants')
+  .post(Applicants.createApplication)
+  .get(Applicants.getApplicants);
 
 router.post('/signin', requireSignin, UserController.signin);
 router.post('/signup', UserController.signup);
