@@ -29,6 +29,7 @@ app.use(bodyParser.json());
 
 app.use('/', apiRouter);
 app.use('/api', apiRouter);
+app.use('/applicants', apiRouter);
 app.use('/posts', apiRouter);
 app.use('/posts/:id', apiRouter);
 app.use('/signin', apiRouter);
