@@ -20,7 +20,7 @@ router.route('/posts/:id')
   .get(Posts.getPost)
   .delete(requireAuth, Posts.deletePost);
 
-router.route('/applicants')
+router.route('/application')
   .post(Applicants.createApplication)
   .get(Applicants.getApplicants);
 
